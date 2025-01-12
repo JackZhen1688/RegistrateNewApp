@@ -37,17 +37,18 @@ public class PersonTypeController {
 		}
 	}
 	
-	@GetMapping(value = "/personTypeByType/{type}")
-	public PersonType getPersonTypeByType(@PathVariable("type") String type) 
+	@GetMapping(value = "/personTypeById/{id}")
+	public PersonType getPersonTypeById(@PathVariable("id") Long id) 
 	{
 		try {
 			
-			log.debug("Request to getPersonTypeByType() from controller");
+			log.debug("Request to getPersonTypeById() from controller");
 			
-			return personTypeService.getPersonTypeByType(type);
+			return personTypeService.getPersonTypeById(id);
 		} catch (Exception e) {
-			log.error("Error calling getPersonTypeByType()", e);
+			log.error("Error calling getPersonTypeById()", e);
 			return null;
 		}
 	}
+	
 }

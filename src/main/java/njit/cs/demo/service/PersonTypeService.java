@@ -8,6 +8,6 @@ public interface PersonTypeService {
 	
 	public List<PersonType> getPersonTypes();
 
-	public PersonType getPersonTypeByType(String type);
+	public PersonType getPersonTypeById(Long id);
 
 }

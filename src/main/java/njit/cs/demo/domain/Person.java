@@ -40,14 +40,17 @@ public class Person implements Serializable {
 	@Column(name="\"BIRTH_DAY\"")
 	private Date birthDay;
 	
-    @Column(name = "\"PERT_ID\"")
-    private Long pertId;
-    
     /*-----------------------------------------------
      * Ignore when column is used by mapping
      * For new version of the Hibernate
      * Only mapping in the main table by the the keys
      *-----------------------------------------------*/
+    //#1.Using foreign key
+    //   Person(Foreign key:PERT_ID) --> PersonType(Primary key:PERT_ID)
+    @OneToOne(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinColumn(name = "\"PERT_ID\"")
+    private PersonType PersonType;
+
     //#1.Using foreign key
     //   Person(Foreign key:ADD_ID) --> Address(Primary key:ADD_ID)
     @OneToOne(cascade = CascadeType.ALL)
@@ -121,7 +124,7 @@ public class Person implements Serializable {
 	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
-
+/*
 	public Long getPertId() {
 		return pertId;
 	}
@@ -129,9 +132,18 @@ public class Person implements Serializable {
 	public void setPertId(Long pertId) {
 		this.pertId = pertId;
 	}
-
+*/
+	
 	public Address getAddress() {
 		return address;
+	}
+
+	public PersonType getPersonType() {
+		return PersonType;
+	}
+
+	public void setPersonType(PersonType personType) {
+		PersonType = personType;
 	}
 
 	public void setAddress(Address address) {
